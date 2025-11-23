@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import { authJwt } from '../middleware/authJwt.js';
-import { authServiceToken } from '../middleware/authServiceToken.js';
+import { authJwt } from '../midleware/authJwt.js';
+import { authServiceToken } from '../midleware/authServiceToken.js';
 import {
   createCustomer,
   getCustomerById,
