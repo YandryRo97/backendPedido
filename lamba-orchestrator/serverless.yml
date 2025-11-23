@@ -1,0 +1,25 @@
+service: lambda-orchestrator
+
+frameworkVersion: '4'
+
+provider:
+  name: aws
+  runtime: nodejs22.x
+  stage: dev
+  region: us-east-1
+  environment:
+    CUSTOMERS_API_BASE: ${env:CUSTOMERS_API_BASE}
+    ORDERS_API_BASE: ${env:ORDERS_API_BASE}
+    SERVICE_TOKEN: ${env:SERVICE_TOKEN}
+    JWT_SECRET: ${env:JWT_SECRET}
+
+functions:
+  orchestrator:
+    handler: handler.orchestrate
+    events:
+      - httpApi:
+          method: POST
+          path: /orchestrator/create-and-confirm-order
+
+plugins:
+  - serverless-offline
